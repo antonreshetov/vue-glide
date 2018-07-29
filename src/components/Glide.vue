@@ -18,6 +18,105 @@ import events from './events'
 export default {
   name: 'VueGlide',
 
+  props: {
+    type: {
+      type: String,
+      default: 'slider'
+    },
+    startAt: {
+      type: Number,
+      default: 0
+    },
+    perView: {
+      type: Number,
+      default: 3
+    },
+    focusAt: {
+      type: [String, Number],
+      default: 0
+    },
+    gap: {
+      type: Number,
+      default: 10
+    },
+    autoplay: {
+      type: [Number, Boolean],
+      default: false
+    },
+    hoverpause: {
+      type: Boolean,
+      default: true
+    },
+    keyboard: {
+      type: Boolean,
+      default: true
+    },
+    bound: {
+      type: Boolean,
+      default: true
+    },
+    swipeThreshold: {
+      type: [Number, Boolean],
+      default: 80
+    },
+    dragThreshold: {
+      type: [Number, Boolean],
+      default: 120
+    },
+    perTouch: {
+      type: [Number, Boolean],
+      default: false
+    },
+    touchRatio: {
+      type: Number,
+      default: 0.5
+    },
+    touchAngle: {
+      type: Number,
+      default: 45
+    },
+    animationDuration: {
+      type: Number,
+      default: 400
+    },
+    rewind: {
+      type: Boolean,
+      default: true
+    },
+    rewindDuration: {
+      type: Number,
+      default: 800
+    },
+    animationTimingFunc: {
+      type: String,
+      default: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)'
+    },
+    direction: {
+      type: String,
+      default: 'ltr'
+    },
+    peek: {
+      type: [Number, Object],
+      default: 0
+    },
+    breakpoints: {
+      type: Object,
+      default: () => {}
+    },
+    classes: {
+      type: Object,
+      default: () => {}
+    },
+    throttle: {
+      type: Number,
+      default: 25
+    },
+    options: {
+      type: Object,
+      default: () => {}
+    }
+  },
+
   data () {
     return {
       glide: undefined
@@ -25,7 +124,57 @@ export default {
   },
 
   mounted () {
-    this.glide = new Glide(this.$el)
+    this.init()
+  },
+
+  methods: {
+    /**
+     * Initialization glide
+     */
+    init () {
+      const defaultClasses = {
+        direction: {
+          ltr: 'glide--ltr',
+          rtl: 'glide--rtl'
+        },
+        slider: 'glide--slider',
+        carousel: 'glide--carousel',
+        swipeable: 'glide--swipeable',
+        dragging: 'glide--dragging',
+        cloneSlide: 'glide__slide--clone',
+        activeNav: 'glide__bullet--active',
+        activeSlide: 'glide__slide--active',
+        disabledArrow: 'glide__arrow--disabled'
+      }
+
+      const options = {
+        type: this.type,
+        startAt: this.startAt,
+        perView: this.perView,
+        focusAt: this.focusAt,
+        gap: this.gap,
+        autoplay: this.autoplay,
+        hoverpause: this.hoverpause,
+        keyboard: this.keyboard,
+        bound: this.bound,
+        swipeThreshold: this.swipeThreshold,
+        dragThreshold: this.dragThreshold,
+        perTouch: this.perTouch,
+        touchRatio: this.touchRatio,
+        touchAngle: this.touchAngle,
+        animationDuration: this.animationDuration,
+        rewind: this.rewind,
+        rewindDuration: this.rewindDuration,
+        animationTimingFunc: this.animationTimingFunc,
+        direction: this.direction,
+        peek: this.peek,
+        classes: Object.assign(defaultClasses, this.classes),
+        throttle: this.throttle
+      }
+
+      const mergedOptions = Object.assign(options, this.options)
+
+      this.glide = new Glide(this.$el, mergedOptions)
     this.glide.mount()
     this.eventConnector(events)
   },
