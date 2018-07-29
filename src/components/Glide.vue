@@ -31,6 +31,23 @@ export default {
   },
 
   methods: {
+    /**
+     * Go to the slide
+     * @param {string} pattern - special format glide.js api
+     * Available pattern:
+     * * > - Move one forward
+     * * < - Move one backward
+     * * ={i} - Go to {i} zero-based slide (eq. '=1', will go to second slide)
+     * * >> - Rewinds to end (last slide)
+     * * << - Rewinds to start (first slide)
+     */
+    go (pattern) {
+      this.glide.go(pattern)
+    },
+    /**
+     * Pass glide events to Vue events
+     * @param {array} - glide events
+     */
     eventConnector (events) {
       events.map(event => {
         this.glide.on(event, () => {
