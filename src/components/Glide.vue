@@ -234,6 +234,21 @@ export default {
 
       slides.forEach(el => {
         el.addEventListener('click', e => {
+          // Recurcive bubbling from nested elems to find '.glide__slide'
+          const recursive = (el) => {
+            const parent = el.parentNode
+            const contain = parent.classList.contains('glide__slide')
+            if (contain) {
+              return this.$emit('glide:slide-click', Number(parent.dataset.glideIndex))
+            } else {
+              recursive(parent)
+            }
+          }
+
+          if (!event.target.classList.contains('glide__slide')) {
+            recursive(e.target)
+          }
+
           this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
         })
       })
