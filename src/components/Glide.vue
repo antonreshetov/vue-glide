@@ -183,9 +183,8 @@ export default {
       this.glide = new Glide(this.$el, mergedOptions)
     this.glide.mount()
     this.eventConnector(events)
+      this.addEventListenerToSlide()
   },
-
-  methods: {
     /**
      * Go to the slide
      * @param {string} pattern - special format glide.js api
