@@ -204,6 +204,20 @@ export default {
           this.$emit(`glide:${emmiter}`, e)
         })
       })
+    },
+    /**
+     * Add event listener to not of Vue component to emit Vue event
+     * When type is 'carousel', glide.js clones DOM slides
+     * @returns {number} - index of slide
+     */
+    addEventListenerToSlide () {
+      const slides = document.querySelectorAll('.glide__slide')
+
+      slides.forEach(el => {
+        el.addEventListener('click', e => {
+          this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
+        })
+      })
     }
   }
 }
