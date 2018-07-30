@@ -123,6 +123,12 @@ export default {
     }
   },
 
+  computed: {
+    currentSlide () {
+      return this.glide.index
+    }
+  },
+
   mounted () {
     this.init()
   },
