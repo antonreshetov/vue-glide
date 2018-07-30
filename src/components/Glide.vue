@@ -111,6 +111,10 @@ export default {
       type: Number,
       default: 25
     },
+    toSlideByClick: {
+      type: Boolean,
+      default: false
+    },
     options: {
       type: Object,
       default: () => {}
@@ -178,7 +182,13 @@ export default {
         throttle: this.throttle
       }
 
-      const mergedOptions = Object.assign(options, this.options)
+      let mergedOptions = Object.assign(options, this.options)
+
+      // Disable 'bound' to add empty space after the last slide
+      if (this.toSlideByClick) {
+        mergedOptions.bound = false
+        this.goToSlideByClick()
+      }
 
       this.glide = new Glide(this.$el, mergedOptions)
     this.glide.mount()
@@ -197,6 +207,12 @@ export default {
      */
     go (pattern) {
       this.glide.go(pattern)
+    },
+    /**
+     * Go to the slide by click on slide
+     */
+    goToSlideByClick () {
+      this.$on('glide:slide-click', (e) => this.go(`=${e}`))
     },
     /**
      * Pass glide events to Vue events
