@@ -1,8 +1,9 @@
 {
-  "name": "vue-glide",
+  "name": "vue-glide-js",
   "version": "0.1.0",
-  "private": true,
-  "main": "src/components/Glide.vue",
+  "description": "Vue component on top of the Glide.js",
+  "private": false,
+  "main": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,6 +11,26 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonreshetov/vue-glide.git"
+  },
+  "keywords": [
+    "slider",
+    "carousel",
+    "glide",
+    "vue",
+    "vuejs",
+    "vue slider",
+    "vue carousel",
+    "components"
+  ],
+  "author": "Anton Reshetov",
+  "license": "MIT",
+  "bugs": {
+    "url": "git+https://github.com/antonreshetov/vue-glide.git/issues"
+  },
+  "homepage": "https://github.com/antonreshetov/vue-glide#readme",
   "dependencies": {
     "@glidejs/glide": "^3.2.1",
     "vue": "^2.5.16"
