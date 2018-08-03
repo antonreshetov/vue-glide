@@ -1,8 +1,6 @@
 # vue-glide
 Vue component on top of the [Glide.js](https://github.com/glidejs/glide)
 
-# Getting Started
-
 ## Install
 
 ### NPM
