@@ -7,7 +7,7 @@
     <meta name="description" content="">
     
     
-    <link rel="preload" href="/vue-glide/assets/css/0.styles.b82470f8.css" as="style"><link rel="preload" href="/vue-glide/assets/js/app.77a46b52.js" as="script"><link rel="preload" href="/vue-glide/assets/js/4.865f9a1b.js" as="script"><link rel="prefetch" href="/vue-glide/assets/js/2.41229c4f.js"><link rel="prefetch" href="/vue-glide/assets/js/3.09fa0fdc.js"><link rel="prefetch" href="/vue-glide/assets/js/5.296e833a.js"><link rel="prefetch" href="/vue-glide/assets/js/6.a2086d91.js">
+    <link rel="preload" href="/vue-glide/assets/css/0.styles.b82470f8.css" as="style"><link rel="preload" href="/vue-glide/assets/js/app.636d6a1e.js" as="script"><link rel="preload" href="/vue-glide/assets/js/4.1c1fb07d.js" as="script"><link rel="prefetch" href="/vue-glide/assets/js/2.41229c4f.js"><link rel="prefetch" href="/vue-glide/assets/js/3.09fa0fdc.js"><link rel="prefetch" href="/vue-glide/assets/js/5.296e833a.js"><link rel="prefetch" href="/vue-glide/assets/js/6.a2086d91.js">
     <link rel="stylesheet" href="/vue-glide/assets/css/0.styles.b82470f8.css">
   </head>
   <body>
@@ -31,11 +31,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 </code></pre></div><h3 id="on-demand"><a href="#on-demand" aria-hidden="true" class="header-anchor">#</a> On demand</h3><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-glide</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-glide-slide</span>
-        <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>i in 10<span class="token punctuation">&quot;</span></span>
-        <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>i<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-        Slide {{ i }}
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-glide-slide</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-glide-slide</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-glide-slide</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-glide</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
@@ -51,7 +47,18 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
-</code></pre></div><h3 id="example"><a href="#example" aria-hidden="true" class="header-anchor">#</a> Example</h3><div class="glide"><div data-glide-el="track" class="glide__track"><ul class="glide__slides"><li data-glide-index="0" class="glide__slide"><pre><code>Slide 1
+</code></pre></div><h3 id="example"><a href="#example" aria-hidden="true" class="header-anchor">#</a> Example</h3><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-glide</span> <span class="token attr-name">:bullet</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-glide-slide</span>
+    <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>i in 10<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>i<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    Slide {{ i }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-glide-slide</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>control<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-glide-dir</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>&lt;<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>prev<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">data-glide-dir</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>&gt;<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>next<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-glide</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="glide"><div data-glide-el="track" class="glide__track"><ul class="glide__slides"><li data-glide-index="0" class="glide__slide"><pre><code>Slide 1
 </code></pre></li><li data-glide-index="1" class="glide__slide"><pre><code>Slide 2
 </code></pre></li><li data-glide-index="2" class="glide__slide"><pre><code>Slide 3
 </code></pre></li><li data-glide-index="3" class="glide__slide"><pre><code>Slide 4
@@ -61,10 +68,10 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 </code></pre></li><li data-glide-index="7" class="glide__slide"><pre><code>Slide 8
 </code></pre></li><li data-glide-index="8" class="glide__slide"><pre><code>Slide 9
 </code></pre></li><li data-glide-index="9" class="glide__slide"><pre><code>Slide 10
-</code></pre></li></ul></div></div></div><div class="page-edit"><!----><!----></div><div class="page-nav"><p class="inner"><span class="prev">
+</code></pre></li></ul></div><div data-glide-el="controls"><button data-glide-dir="&lt;">prev</button><button data-glide-dir="&gt;">next</button></div><div data-glide-el="controls[nav]" class="glide__bullets"><button data-glide-dir="=0" class="glide__bullet"></button><button data-glide-dir="=1" class="glide__bullet"></button><button data-glide-dir="=2" class="glide__bullet"></button><button data-glide-dir="=3" class="glide__bullet"></button><button data-glide-dir="=4" class="glide__bullet"></button><button data-glide-dir="=5" class="glide__bullet"></button><button data-glide-dir="=6" class="glide__bullet"></button><button data-glide-dir="=7" class="glide__bullet"></button><button data-glide-dir="=8" class="glide__bullet"></button><button data-glide-dir="=9" class="glide__bullet"></button></div></div></div><div class="page-edit"><!----><!----></div><div class="page-nav"><p class="inner"><span class="prev">
         ← <a href="/vue-glide/" class="prev router-link-active">
           Introduce
         </a></span><!----></p></div></div></div></div>
-    <script src="/vue-glide/assets/js/4.865f9a1b.js" defer></script><script src="/vue-glide/assets/js/app.77a46b52.js" defer></script>
+    <script src="/vue-glide/assets/js/4.1c1fb07d.js" defer></script><script src="/vue-glide/assets/js/app.636d6a1e.js" defer></script>
   </body>
 </html>
