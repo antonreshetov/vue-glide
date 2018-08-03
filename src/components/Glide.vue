@@ -5,6 +5,9 @@
         <slot></slot>
       </ul>
     </div>
+    <div data-glide-el="controls" v-if="$slots.control">
+      <slot name="control"></slot>
+    </div>
   </div>
 </template>
 
