@@ -8,6 +8,17 @@
     <div data-glide-el="controls" v-if="$slots.control">
       <slot name="control"></slot>
     </div>
+    <div
+      class="glide__bullets"
+      data-glide-el="controls[nav]"
+      v-if="slidesCount">
+      <button
+        class="glide__bullet"
+        v-for="index in slidesCount"
+        :key="index"
+        :data-glide-dir="`=${index}`">
+      </button>
+    </div>
   </div>
 </template>
 
