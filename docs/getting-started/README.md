@@ -64,3 +64,26 @@ export default {
 }
 </script>
 ```
+
+### Example
+
+<vue-glide>
+  <vue-glide-slide
+    v-for="i in 10"
+    :key="i">
+    Slide {{ i }}
+  </vue-glide-slide >
+</vue-glide>
+
+<script>
+import VueGlide from '../../src/components/Glide.vue'
+import VueGlideSlide from '../../src/components/GlideSlide.vue'
+
+export default {
+  components: {
+    [VueGlide.name]: VueGlide,
+    [VueGlideSlide.name]: VueGlideSlide
+  }
+}
+</script>
+<style src="../main.scss" lang="scss" />
