@@ -16,7 +16,7 @@
         class="glide__bullet"
         v-for="index in slidesCount"
         :key="index"
-        :data-glide-dir="`=${index}`">
+        :data-glide-dir="`=${index - 1}`">
       </button>
     </div>
   </div>
