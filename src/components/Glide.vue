@@ -11,7 +11,7 @@
     <div
       class="glide__bullets"
       data-glide-el="controls[nav]"
-      v-if="slidesCount">
+      v-if="bullet">
       <button
         class="glide__bullet"
         v-for="index in slidesCount"
@@ -124,6 +124,10 @@ export default {
       default: 25
     },
     toSlideByClick: {
+      type: Boolean,
+      default: false
+    },
+    bullet: {
       type: Boolean,
       default: false
     },
