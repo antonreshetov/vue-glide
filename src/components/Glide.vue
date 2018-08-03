@@ -131,6 +131,11 @@ export default {
   computed: {
     currentSlide () {
       return this.glide.index
+    },
+    slidesCount () {
+      return this.$slots.default.filter(
+        c => c.componentOptions.tag === 'vue-glide-slide'
+      ).length
     }
   },
 
