@@ -51,7 +51,7 @@ export default {
     },
     bound: {
       type: Boolean,
-      default: true
+      default: false
     },
     swipeThreshold: {
       type: [Number, Boolean],
@@ -182,9 +182,7 @@ export default {
 
       let mergedOptions = Object.assign(options, this.options)
 
-      // Disable 'bound' to add empty space after the last slide
       if (this.toSlideByClick) {
-        mergedOptions.bound = false
         this.goToSlideByClick()
       }
 
