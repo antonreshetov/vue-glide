@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <h1>Workbench</h1>
-    <vue-glide class="demo" :toSlideByClick="true">
-      <vue-glide-slide>0</vue-glide-slide>
-      <vue-glide-slide>1</vue-glide-slide>
-      <vue-glide-slide>3</vue-glide-slide>
-      <vue-glide-slide>4</vue-glide-slide>
-      <vue-glide-slide>5</vue-glide-slide>
-      <vue-glide-slide>6</vue-glide-slide>
+    <vue-glide class="demo" :bullet="true">
+      <vue-glide-slide
+        v-for="i in 10"
+        :key="i">
+        Slide {{ i }}
+      </vue-glide-slide>
+      <template slot="control">
+        <button data-glide-dir="<">prev</button>
+        <button data-glide-dir=">">next</button>
+      </template>
     </vue-glide>
   </div>
 </template>
