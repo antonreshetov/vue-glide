@@ -43,11 +43,7 @@ new Vue({
 <template>
   <div id="app">
     <vue-glide>
-      <vue-glide-slide
-        v-for="i in 10"
-        :key="i">
-        Slide {{ i }}
-      </vue-glide-slide>
+      <vue-glide-slide></vue-glide-slide>
     </vue-glide>
   </div>
 </template>
@@ -67,12 +63,30 @@ export default {
 
 ### Example
 
-<vue-glide>
+```vue
+<vue-glide :bullet="true">
   <vue-glide-slide
     v-for="i in 10"
     :key="i">
     Slide {{ i }}
-  </vue-glide-slide >
+  </vue-glide-slide>
+  <template slot="control">
+    <button data-glide-dir="<">prev</button>
+    <button data-glide-dir=">">next</button>
+  </template>
+</vue-glide>
+```
+
+<vue-glide :bullet="true">
+  <vue-glide-slide
+    v-for="i in 10"
+    :key="i">
+    Slide {{ i }}
+  </vue-glide-slide>
+  <template slot="control">
+    <button data-glide-dir="<">prev</button>
+    <button data-glide-dir=">">next</button>
+  </template>
 </vue-glide>
 
 <script>
