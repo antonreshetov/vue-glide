@@ -199,6 +199,7 @@ export default {
         animationTimingFunc: this.animationTimingFunc,
         direction: this.direction,
         peek: this.peek,
+        breakpoints: this.breakpoints,
         classes: Object.assign(defaultClasses, this.classes),
         throttle: this.throttle
       }
