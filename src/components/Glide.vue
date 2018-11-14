@@ -267,7 +267,7 @@ export default {
             }
           }
 
-          if (!event.target.classList.contains('glide__slide')) {
+          if (!e.target.classList.contains('glide__slide')) {
             recursive(e.target)
           }
 
