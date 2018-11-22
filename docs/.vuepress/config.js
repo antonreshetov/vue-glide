@@ -2,7 +2,7 @@ module.exports = {
   base: '/vue-glide/',
   title: 'Vue Glide',
   editLinks: true,
-  ga: 'UA-56182454-6',
+  ga: 'UA-56182454-7',
   themeConfig: {
     nav: [
       {
