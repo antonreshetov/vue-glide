@@ -17,6 +17,6 @@ module.exports = {
       },
       { text: 'GitHub', link: 'https://github.com/antonreshetov/vue-glide' }
     ],
-    sidebar: ['/', '/getting-started/']
+    sidebar: ['/', '/getting-started/', '/props/']
   }
 }
