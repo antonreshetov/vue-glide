@@ -42,8 +42,7 @@
     "@vue/eslint-config-standard": "^3.0.0-rc.5",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.16",
-    "vuepress": "^0.12.0"
+    "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
     "root": true,
