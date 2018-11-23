@@ -10,7 +10,7 @@ module.exports = {
         items: [
           {
             text: 'Vue Eva Icons',
-            link: 'https://antonreshetov.github.io/vue-glide/'
+            link: 'https://github.com/antonreshetov/vue-eva-icons'
           },
           { text: 'Email signature generator', link: 'https://mysigmail.com' }
         ]
