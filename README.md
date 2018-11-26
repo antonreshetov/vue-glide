@@ -1,9 +1,8 @@
-# vue-glide
+# Vue Glide
 
 ![npm](https://img.shields.io/npm/v/vue-glide-js.svg)
 ![issue](https://img.shields.io/github/issues/antonreshetov/vue-glide.svg)
 ![license](https://img.shields.io/github/license/antonreshetov/vue-glide.svg)
-![tweet](https://img.shields.io/twitter/url/https/github.com/antonreshetov/vue-glide.svg?style=social)
 
 Vue component on top of the [Glide.js](https://github.com/glidejs/glide)
 
