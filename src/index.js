@@ -7,3 +7,8 @@ export default {
     Vue.component(GlideSlide.name, GlideSlide)
   }
 }
+
+export {
+  Glide,
+  GlideSlide
+}

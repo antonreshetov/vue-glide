@@ -3,10 +3,11 @@
   "version": "1.0.4",
   "description": "Vue component on top of the Glide.js",
   "private": false,
-  "main": "src/index.js",
+  "main": "dist/vue-glide.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name vue-glide ./src/index.js",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
