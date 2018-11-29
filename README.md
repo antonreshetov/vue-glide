@@ -32,8 +32,9 @@ To use in your project, just import vue-glide and install into Vue.
 
 ```js
 import Vue from 'vue'
-import VueGlide from 'vue-glide-js'
 import App from './App.vue'
+import VueGlide from 'vue-glide-js'
+import 'vue-glide-js/dist/vue-glide.css'
 
 Vue.use(VueGlide)
 
@@ -57,13 +58,12 @@ new Vue({
 </template>
 
 <script>
-  import VueGlide from 'vue-glide-js/src/components/Glide.vue'
-  import VueGlideSlide from 'vue-glide-js/src/components/GlideSlide.vue'
+  import { Glide, GlideSlide } from 'vue-glide-js'
 
   export default {
     components: {
-      [VueGlide.name]: VueGlide,
-      [VueGlideSlide.name]: VueGlideSlide
+      [Glide.name]: Glide,
+      [GlideSlide.name]: GlideSlide
     }
   }
 </script>
