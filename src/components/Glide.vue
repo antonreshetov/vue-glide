@@ -221,8 +221,8 @@ export default {
     eventConnector (events) {
       events.map(event => {
         this.glide.on(event, e => {
-          const emmiter = event.replace(/\./, '-')
-          this.$emit(`glide:${emmiter}`, e)
+          const emitter = event.replace(/\./, '-')
+          this.$emit(`glide:${emitter}`, e)
         })
       })
     },
