@@ -178,33 +178,13 @@ export default {
         disabledArrow: 'glide__arrow--disabled'
       }
 
-      const options = {
-        type: this.type,
-        startAt: this.startAt,
-        perView: this.perView,
-        focusAt: this.focusAt,
-        gap: this.gap,
-        autoplay: this.autoplay,
-        hoverpause: this.hoverpause,
-        keyboard: this.keyboard,
-        bound: this.bound,
-        swipeThreshold: this.swipeThreshold,
-        dragThreshold: this.dragThreshold,
-        perTouch: this.perTouch,
-        touchRatio: this.touchRatio,
-        touchAngle: this.touchAngle,
-        animationDuration: this.animationDuration,
-        rewind: this.rewind,
-        rewindDuration: this.rewindDuration,
-        animationTimingFunc: this.animationTimingFunc,
-        direction: this.direction,
-        peek: this.peek,
-        breakpoints: this.breakpoints,
-        classes: Object.assign(defaultClasses, this.classes),
-        throttle: this.throttle
-      }
+      const initOptions = Object.assign({}, this.$props)
+      // Remove additional props 'options'
+      delete initOptions.options
 
-      let mergedOptions = Object.assign(options, this.options)
+      initOptions.classes = Object.assign(defaultClasses, this.classes)
+
+      const mergedOptions = Object.assign(initOptions, this.options)
 
       if (this.toSlideByClick) {
         this.goToSlideByClick()
@@ -232,7 +212,7 @@ export default {
      * Go to the slide by click on slide
      */
     goToSlideByClick () {
-      this.$on('glide:slide-click', (e) => this.go(`=${e}`))
+      this.$on('glide:slide-click', e => this.go(`=${e}`))
     },
     /**
      * Pass glide events to Vue events
