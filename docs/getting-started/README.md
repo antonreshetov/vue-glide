@@ -1,6 +1,7 @@
 ---
 sidebarDepth: 2
 ---
+
 # Getting Started
 
 ## Install
@@ -23,7 +24,6 @@ You can download latest version from the Github: [Download](https://github.com/a
 
 To use in your project, just import vue-glide and install into Vue.
 
-
 ```js
 import Vue from 'vue'
 import App from './App.vue'
@@ -43,9 +43,7 @@ new Vue({
 ```vue
 <template>
   <div id="app">
-    <vue-glide>
-      <vue-glide-slide></vue-glide-slide>
-    </vue-glide>
+    <vue-glide> <vue-glide-slide></vue-glide-slide> </vue-glide>
   </div>
 </template>
 
@@ -86,8 +84,8 @@ export default {
 </vue-glide>
 
 <script>
-import VueGlide from '../../src/components/Glide.vue'
-import VueGlideSlide from '../../src/components/GlideSlide.vue'
+import VueGlide from '../../src/components/Glide'
+import VueGlideSlide from '../../src/components/GlideSlide'
 
 export default {
   components: {
