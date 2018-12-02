@@ -149,7 +149,7 @@ export default {
     },
     slidesCount () {
       return this.$slots.default.filter(
-        c => c.componentOptions.tag === 'vue-glide-slide'
+        c => c.componentOptions && c.componentOptions.tag === 'vue-glide-slide'
       ).length
     }
   },
