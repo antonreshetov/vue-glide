@@ -1,28 +1,3 @@
-<template>
-  <div class="glide">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <slot></slot>
-      </ul>
-    </div>
-    <div data-glide-el="controls" v-if="$slots.control">
-      <slot name="control"></slot>
-    </div>
-    <div
-      class="glide__bullets"
-      data-glide-el="controls[nav]"
-      v-if="bullet">
-      <button
-        class="glide__bullet"
-        v-for="index in slidesCount"
-        :key="index"
-        :data-glide-dir="`=${index - 1}`">
-      </button>
-    </div>
-  </div>
-</template>
-
-<script>
 import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
@@ -143,6 +118,50 @@ export default {
     }
   },
 
+  render (h) {
+    let control
+    let bullet
+    let buttons = []
+    // Pass only vue-glide-slide
+    let slides = this.$slots.default.filter(
+      c => c.componentOptions && c.componentOptions.tag === 'vue-glide-slide'
+    )
+
+    if (this.$slots.control.length) {
+      control = <div data-glide-el="controls">{this.$slots.control}</div>
+    }
+
+    if (this.bullet) {
+      for (let i = 0; i < this.slidesCount; i++) {
+        buttons.push(
+          h('button', {
+            key: i,
+            attrs: {
+              'data-glide-dir': '=' + i,
+              class: 'glide__bullet'
+            }
+          })
+        )
+      }
+
+      bullet = (
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+          {buttons}
+        </div>
+      )
+    }
+
+    return (
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">{slides}</ul>
+        </div>
+        {control}
+        {bullet}
+      </div>
+    )
+  },
+
   computed: {
     currentSlide () {
       return this.glide.index
@@ -260,4 +279,3 @@ export default {
     }
   }
 }
-</script>

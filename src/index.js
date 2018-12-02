@@ -1,5 +1,5 @@
-import Glide from './components/Glide.vue'
-import GlideSlide from './components/GlideSlide.vue'
+import Glide from './components/Glide'
+import GlideSlide from './components/GlideSlide'
 
 export default {
   install (Vue, options) {
@@ -8,7 +8,4 @@ export default {
   }
 }
 
-export {
-  Glide,
-  GlideSlide
-}
+export { Glide, GlideSlide }

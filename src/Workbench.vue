@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import VueGlide from './components/Glide.vue'
-import VueGlideSlide from './components/GlideSlide.vue'
+import VueGlide from './components/Glide'
+import VueGlideSlide from './components/GlideSlide'
 
 export default {
   components: {
