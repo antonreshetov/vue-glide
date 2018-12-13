@@ -41,7 +41,7 @@ button[data-glide-dir='<'] {
   }
   &--active {
     pre {
-      background-color: $color-active;
+      background-color: $color-active !important;
     }
   }
 }
