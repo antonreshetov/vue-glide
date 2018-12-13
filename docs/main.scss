@@ -1,7 +1,82 @@
 $color-green: #3eaf7c;
+$color-active: #497cdd;
+$color-grey: #eee;
 
-.glide__slide--active {
+div[data-glide-el='controls'] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+}
+
+button[data-glide-dir='<'],
+button[data-glide-dir='>'] {
+  position: absolute;
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: $color-grey;
+  opacity: 0.3;
+  color: #000;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+button[data-glide-dir='>'] {
+  right: 5px;
+}
+button[data-glide-dir='<'] {
+  left: 5px;
+}
+
+.glide__slide {
   pre {
-    background-color: $color-green;
+    display: flex;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+  }
+  &--active {
+    pre {
+      background-color: $color-active;
+    }
+  }
+}
+
+.glide__bullets {
+  text-align: center;
+}
+
+.glide__bullet {
+  background-color: $color-grey;
+  border: 0;
+  outline: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($color-grey, 10%);
+  }
+  + .glide__bullet {
+    margin-left: 10px;
+  }
+  &--active {
+    background-color: $color-active;
+  }
+}
+
+.action-button {
+  display: inline-block;
+  background-color: $color-green;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 3px;
+  margin: 30px 0;
+  &:hover {
+    background-color: darken($color-green, 5%);
   }
 }

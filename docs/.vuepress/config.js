@@ -2,6 +2,7 @@ module.exports = {
   base: '/vue-glide/',
   title: 'Vue Glide',
   editLinks: true,
+  description: 'Vue component on top of the Glide.js',
   ga: 'UA-56182454-7',
   themeConfig: {
     nav: [
@@ -17,6 +18,6 @@ module.exports = {
       },
       { text: 'GitHub', link: 'https://github.com/antonreshetov/vue-glide' }
     ],
-    sidebar: ['/', '/getting-started/', '/props/']
+    sidebar: ['/introduce/', '/getting-started/', '/props/']
   }
 }

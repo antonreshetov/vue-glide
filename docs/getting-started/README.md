@@ -59,19 +59,7 @@ export default {
 </script>
 ```
 
-### Example
-
-```vue
-<vue-glide :bullet="true">
-  <vue-glide-slide v-for="i in 10" :key="i"> Slide {{ i }} </vue-glide-slide>
-  <template slot="control">
-    <button data-glide-dir="<">prev</button>
-    <button data-glide-dir=">">next</button>
-  </template>
-</vue-glide>
-```
-
-<vue-glide :bullet="true">
+<!-- <vue-glide :bullet="true">
   <vue-glide-slide
     v-for="i in 10"
     :key="i">
@@ -93,5 +81,5 @@ export default {
     [VueGlideSlide.name]: VueGlideSlide
   }
 }
-</script>
-<style src="../main.scss" lang="scss" />
+</script> -->
+<!-- <style src="../main.scss" lang="scss" /> -->

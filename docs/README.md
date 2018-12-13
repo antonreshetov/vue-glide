@@ -1,7 +1,29 @@
-# Introduce
+---
+home: true
+---
 
-**vue-glide-js** - Just simple vue component on top of the Glide.js.
+<vue-glide :bullet="true">
+  <vue-glide-slide
+    v-for="i in 10"
+    :key="i">
+    Slide {{ i }}
+  </vue-glide-slide>
+  <template slot="control">
+    <button data-glide-dir="<"><</button>
+    <button data-glide-dir=">">></button>
+  </template>
+</vue-glide>
 
-The goal of the project is fast integration glide.js in projects on vue. Also it is simple to raise the development experience on Vue.
+<script>
+import VueGlide from '../src/components/Glide'
+import VueGlideSlide from '../src/components/GlideSlide'
 
-Copyright © 2018-present, [Anton Reshetov]('https://github.com/antonreshetov'). Licensed under the terms of the MIT License.
+export default {
+  components: {
+    [VueGlide.name]: VueGlide,
+    [VueGlideSlide.name]: VueGlideSlide
+  }
+}
+</script>
+
+<style src="./main.scss" lang="scss" />
