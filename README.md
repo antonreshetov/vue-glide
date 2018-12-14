@@ -6,6 +6,8 @@
 
 Vue component on top of the [Glide.js](https://github.com/glidejs/glide)
 
+<img src="./docs/hero.png">
+
 ## Documentation
 
 [https://antonreshetov.github.io/vue-glide](https://antonreshetov.github.io/vue-glide/)
