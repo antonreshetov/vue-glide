@@ -2,7 +2,7 @@
 home: true
 ---
 
-<vue-glide :bullet="true">
+<vue-glide :bullet="true" focusAt="center" type="carousel">
   <vue-glide-slide
     v-for="i in 10"
     :key="i">
