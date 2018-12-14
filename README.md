@@ -1,10 +1,12 @@
-# Vue Glide
+<h1 align="center">Vue Glide</h1>
 
-![npm](https://img.shields.io/npm/v/vue-glide-js.svg)
-![issue](https://img.shields.io/github/issues/antonreshetov/vue-glide.svg)
-![license](https://img.shields.io/github/license/antonreshetov/vue-glide.svg)
+<p align="center">
+  <img src="https://img.shields.io/npm/v/vue-glide-js.svg">
+  <img src="https://img.shields.io/github/issues/antonreshetov/vue-glide.svg">
+  <img src="https://img.shields.io/github/license/antonreshetov/vue-glide.svg">
+</p>
 
-Vue component on top of the [Glide.js](https://github.com/glidejs/glide)
+<p align="center">Vue component on top of the <a href="https://github.com/glidejs/glide">Glide.js</a></p>
 
 <img src="./docs/hero.png">
 
