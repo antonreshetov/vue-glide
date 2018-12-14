@@ -43,7 +43,9 @@ new Vue({
 ```vue
 <template>
   <div id="app">
-    <vue-glide> <vue-glide-slide></vue-glide-slide> </vue-glide>
+    <vue-glide>
+      <vue-glide-slide></vue-glide-slide>
+    </vue-glide>
   </div>
 </template>
 
@@ -58,28 +60,3 @@ export default {
 }
 </script>
 ```
-
-<!-- <vue-glide :bullet="true">
-  <vue-glide-slide
-    v-for="i in 10"
-    :key="i">
-    Slide {{ i }}
-  </vue-glide-slide>
-  <template slot="control">
-    <button data-glide-dir="<">prev</button>
-    <button data-glide-dir=">">next</button>
-  </template>
-</vue-glide>
-
-<script>
-import VueGlide from '../../src/components/Glide'
-import VueGlideSlide from '../../src/components/GlideSlide'
-
-export default {
-  components: {
-    [VueGlide.name]: VueGlide,
-    [VueGlideSlide.name]: VueGlideSlide
-  }
-}
-</script> -->
-<!-- <style src="../main.scss" lang="scss" /> -->
