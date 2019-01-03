@@ -115,7 +115,10 @@ export default {
       type: Object,
       default: () => {}
     },
-    active: Number
+    active: {
+      type: Number,
+      default: 0
+    }
   },
 
   data () {
