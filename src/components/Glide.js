@@ -5,6 +5,11 @@ import events from './events'
 export default {
   name: 'VueGlide',
 
+  model: {
+    prop: 'active',
+    event: 'change'
+  },
+
   props: {
     type: {
       type: String,
@@ -109,7 +114,8 @@ export default {
     options: {
       type: Object,
       default: () => {}
-    }
+    },
+    active: Number
   },
 
   data () {
@@ -160,6 +166,12 @@ export default {
         {bullet}
       </div>
     )
+  },
+
+  watch: {
+    active () {
+      this.changeSlideByModel()
+    }
   },
 
   computed: {
@@ -213,6 +225,8 @@ export default {
       this.glide.mount()
       this.eventConnector(events)
       this.addEventListenerToSlide()
+      this.bindModel()
+      this.changeSlideByModel()
     },
     /**
      * Go to the slide
@@ -276,6 +290,26 @@ export default {
           this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
         })
       })
+    },
+    /**
+     * Bind v-model
+     */
+    bindModel () {
+      this.$on('glide:move', () => {
+        this.$emit('change', this.currentSlide)
+      })
+    },
+    /**
+     * Change slide by v-model
+     */
+    changeSlideByModel () {
+      if (this.active > this.slidesCount - 1) {
+        return this.go(`=${this.slidesCount - 1}`)
+      }
+      if (this.active < 0) {
+        return this.go('=0')
+      }
+      this.go(`=${this.active}`)
     }
   }
 }
