@@ -7,10 +7,10 @@
         :key="i">
         Slide {{ i }}
       </vue-glide-slide>
-      <template slot="control">
+      <!-- <template slot="control">
         <button data-glide-dir="<">prev</button>
         <button data-glide-dir=">">next</button>
-      </template>
+      </template> -->
     </vue-glide>
   </div>
 </template>
