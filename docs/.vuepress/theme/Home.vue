@@ -2,7 +2,7 @@
   <div class="home">
     <div class="hero">
       <img v-if="data.heroImage" :src="$withBase(data.heroImage)" alt="hero">
-      <h1>{{ data.heroText || $title || 'Hello' }}</h1>
+      <h1>{{ data.heroText || $title || 'Hello' }} <span class="version">{{ version }}</span></h1>
       <p class="description">
         {{ data.tagline || $description || 'Welcome to your VuePress site' }}
       </p>
@@ -28,6 +28,7 @@
 
 <script>
 import NavLink from './NavLink.vue'
+const { version } = require('../../../package.json')
 
 export default {
   components: { NavLink },
@@ -40,6 +41,11 @@ export default {
         link: this.data.actionLink,
         text: this.data.actionText
       }
+    }
+  },
+  data () {
+    return {
+      version
     }
   }
 }
