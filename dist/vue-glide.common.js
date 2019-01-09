@@ -4056,7 +4056,9 @@ var glide_core_min = __webpack_require__("TSG6");
     addEventListenerToSlide: function addEventListenerToSlide() {
       var _this3 = this;
 
-      var slides = document.querySelectorAll('.glide__slide');
+      var slides = document.querySelectorAll('.glide__slide'); // convert array-like -> array
+
+      slides = [].slice.call(slides);
       slides.forEach(function (el) {
         el.addEventListener('click', function (e) {
           // Recursive bubbling from nested elems to find '.glide__slide'
