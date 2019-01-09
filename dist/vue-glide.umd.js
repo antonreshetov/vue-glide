@@ -131,7 +131,7 @@ var es6_number_constructor = __webpack_require__("xfY5");
 
 // CONCATENATED MODULE: ./node_modules/@glidejs/glide/dist/glide.esm.js
 /*!
- * Glide.js v3.2.1
+ * Glide.js v3.2.4
  * (c) 2013-2018 Jędrzej Chałubek <jedrzej.chalubek@gmail.com> (http://jedrzejchalubek.com/)
  * Released under the MIT License.
  */
@@ -272,7 +272,7 @@ var defaults = {
    *
    * @type {String}
    */
-  animationTimingFunc: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+  animationTimingFunc: 'cubic-bezier(.165, .840, .440, 1)',
 
   /**
    * Throttle costly events at most once per every wait milliseconds.
@@ -1179,17 +1179,10 @@ function Run (Glide, Components, Events) {
       var settings = Glide.settings;
       var length = Components.Html.slides.length;
 
-      // While number of slides inside instance is smaller
-      // that `perView` settings we should't run at all.
-      // Running distance has to be zero.
-
-      if (settings.perView > length) {
-        return 0;
-      }
-
       // If the `bound` option is acitve, a maximum running distance should be
       // reduced by `perView` and `focusAt` settings. Running distance
       // should end before creating an empty space after instance.
+
       if (Glide.isType('slider') && settings.focusAt !== 'center' && settings.bound) {
         return length - 1 - (toInt(settings.perView) - 1) + toInt(settings.focusAt);
       }
@@ -1284,16 +1277,6 @@ var MARGIN_TYPE = {
 function Gaps (Glide, Components, Events) {
   var Gaps = {
     /**
-     * Setups gap value based on settings.
-     *
-     * @return {Void}
-     */
-    mount: function mount() {
-      this.value = Glide.settings.gap;
-    },
-
-
-    /**
      * Applies gaps between slides. First and last
      * slides do not receive it's edge margins.
      *
@@ -1343,18 +1326,7 @@ function Gaps (Glide, Components, Events) {
      * @returns {Number}
      */
     get: function get() {
-      return Gaps._v;
-    },
-
-
-    /**
-     * Sets value of the gap.
-     *
-     * @param {String} value
-     * @return {Void}
-     */
-    set: function set(value) {
-      Gaps._v = toInt(value);
+      return toInt(Glide.settings.gap);
     }
   });
 
@@ -1385,14 +1357,6 @@ function Gaps (Glide, Components, Events) {
   });
 
   /**
-   * Remount component:
-   * - on updating via API, to update gap value
-   */
-  Events.on('update', function () {
-    Gaps.mount();
-  });
-
-  /**
    * Apply calculated gaps:
    * - after building, so slides (including clones) will receive proper margins
    * - on updating via API, to recalculate gaps with new options
@@ -1419,16 +1383,20 @@ function Gaps (Glide, Components, Events) {
  * @return {Array}
  */
 function siblings(node) {
-  var n = node.parentNode.firstChild;
-  var matched = [];
+  if (node && node.parentNode) {
+    var n = node.parentNode.firstChild;
+    var matched = [];
 
-  for (; n; n = n.nextSibling) {
-    if (n.nodeType === 1 && n !== node) {
-      matched.push(n);
+    for (; n; n = n.nextSibling) {
+      if (n.nodeType === 1 && n !== node) {
+        matched.push(n);
+      }
     }
+
+    return matched;
   }
 
-  return matched;
+  return [];
 }
 
 /**
@@ -1845,11 +1813,13 @@ function Build (Glide, Components, Events) {
       var classes = Glide.settings.classes;
       var slide = Components.Html.slides[Glide.index];
 
-      slide.classList.add(classes.activeSlide);
+      if (slide) {
+        slide.classList.add(classes.activeSlide);
 
-      siblings(slide).forEach(function (sibling) {
-        sibling.classList.remove(classes.activeSlide);
-      });
+        siblings(slide).forEach(function (sibling) {
+          sibling.classList.remove(classes.activeSlide);
+        });
+      }
     },
 
 
@@ -1925,8 +1895,10 @@ function Clones (Glide, Components, Events) {
           classes = _Glide$settings.classes;
 
 
-      var start = slides.slice(0, perView);
-      var end = slides.slice(-perView);
+      var peekIncrementer = +!!Glide.settings.peek;
+      var part = perView + peekIncrementer;
+      var start = slides.slice(0, part);
+      var end = slides.slice(-part);
 
       for (var r = 0; r < Math.max(1, Math.floor(perView / slides.length)); r++) {
         for (var i = 0; i < start.length; i++) {
@@ -2054,6 +2026,7 @@ var EventsBinder = function () {
    * @param  {String|Array} events
    * @param  {Element|Window|Document} el
    * @param  {Function} closure
+   * @param  {Boolean|Object} capture
    * @return {Void}
    */
 
@@ -2662,6 +2635,28 @@ function Transition (Glide, Components, Events) {
   return Transition;
 }
 
+/**
+ * Test via a getter in the options object to see
+ * if the passive property is accessed.
+ *
+ * @see https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
+ */
+
+var supportsPassive = false;
+
+try {
+  var opts = Object.defineProperty({}, 'passive', {
+    get: function get() {
+      supportsPassive = true;
+    }
+  });
+
+  window.addEventListener('testPassive', null, opts);
+  window.removeEventListener('testPassive', null, opts);
+} catch (e) {}
+
+var supportsPassive$1 = supportsPassive;
+
 var START_EVENTS = ['touchstart', 'mousedown'];
 var MOVE_EVENTS = ['touchmove', 'mousemove'];
 var END_EVENTS = ['touchend', 'touchcancel', 'mouseup', 'mouseleave'];
@@ -2679,6 +2674,8 @@ function Swipe (Glide, Components, Events) {
   var swipeStartX = 0;
   var swipeStartY = 0;
   var disabled = false;
+  var moveable = true;
+  var capture = supportsPassive$1 ? { passive: true } : false;
 
   var Swipe = {
     /**
@@ -2703,6 +2700,7 @@ function Swipe (Glide, Components, Events) {
 
         var swipe = this.touches(event);
 
+        moveable = true;
         swipeSin = null;
         swipeStartX = toInt(swipe.pageX);
         swipeStartY = toInt(swipe.pageY);
@@ -2734,20 +2732,22 @@ function Swipe (Glide, Components, Events) {
         var subEySy = toInt(swipe.pageY) - swipeStartY;
         var powEX = Math.abs(subExSx << 2);
         var powEY = Math.abs(subEySy << 2);
-        var swipeHypotenuse = (powEX + powEY) * (powEX + powEY);
-        var swipeCathetus = powEY * powEY;
+        var swipeHypotenuse = Math.sqrt(powEX + powEY);
+        var swipeCathetus = Math.sqrt(powEY);
 
         swipeSin = Math.asin(swipeCathetus / swipeHypotenuse);
 
-        Components.Move.make(subExSx * toFloat(touchRatio));
-
-        if (swipeSin * 180 / Math.PI < touchAngle) {
+        if (moveable && swipeSin * 180 / Math.PI < touchAngle) {
           event.stopPropagation();
+
+          Components.Move.make(subExSx * toFloat(touchRatio));
 
           Components.Html.root.classList.add(classes.dragging);
 
           Events.emit('swipe.move');
         } else {
+          moveable = false;
+
           return false;
         }
       }
@@ -2773,31 +2773,33 @@ function Swipe (Glide, Components, Events) {
 
         this.enable();
 
-        if (swipeDistance > threshold && swipeDeg < settings.touchAngle) {
-          // While swipe is positive and greater than threshold move backward.
-          if (settings.perTouch) {
-            steps = Math.min(steps, toInt(settings.perTouch));
-          }
+        if (moveable) {
+          if (swipeDistance > threshold && swipeDeg < settings.touchAngle) {
+            // While swipe is positive and greater than threshold move backward.
+            if (settings.perTouch) {
+              steps = Math.min(steps, toInt(settings.perTouch));
+            }
 
-          if (Components.Direction.is('rtl')) {
-            steps = -steps;
-          }
+            if (Components.Direction.is('rtl')) {
+              steps = -steps;
+            }
 
-          Components.Run.make(Components.Direction.resolve('<' + steps));
-        } else if (swipeDistance < -threshold && swipeDeg < settings.touchAngle) {
-          // While swipe is negative and lower than negative threshold move forward.
-          if (settings.perTouch) {
-            steps = Math.max(steps, -toInt(settings.perTouch));
-          }
+            Components.Run.make(Components.Direction.resolve('<' + steps));
+          } else if (swipeDistance < -threshold && swipeDeg < settings.touchAngle) {
+            // While swipe is negative and lower than negative threshold move forward.
+            if (settings.perTouch) {
+              steps = Math.max(steps, -toInt(settings.perTouch));
+            }
 
-          if (Components.Direction.is('rtl')) {
-            steps = -steps;
-          }
+            if (Components.Direction.is('rtl')) {
+              steps = -steps;
+            }
 
-          Components.Run.make(Components.Direction.resolve('>' + steps));
-        } else {
-          // While swipe don't reach distance apply previous transform.
-          Components.Move.make();
+            Components.Run.make(Components.Direction.resolve('>' + steps));
+          } else {
+            // While swipe don't reach distance apply previous transform.
+            Components.Move.make();
+          }
         }
 
         Components.Html.root.classList.remove(settings.classes.dragging);
@@ -2822,14 +2824,14 @@ function Swipe (Glide, Components, Events) {
 
       if (settings.swipeThreshold) {
         Binder.on(START_EVENTS[0], Components.Html.wrapper, function (event) {
-          return _this.start(event);
-        }, { passive: true });
+          _this.start(event);
+        }, capture);
       }
 
       if (settings.dragThreshold) {
         Binder.on(START_EVENTS[1], Components.Html.wrapper, function (event) {
-          return _this.start(event);
-        });
+          _this.start(event);
+        }, capture);
       }
     },
 
@@ -2854,8 +2856,8 @@ function Swipe (Glide, Components, Events) {
       var _this2 = this;
 
       Binder.on(MOVE_EVENTS, Components.Html.wrapper, throttle(function (event) {
-        return _this2.move(event);
-      }, Glide.settings.throttle), { passive: true });
+        _this2.move(event);
+      }, Glide.settings.throttle), capture);
     },
 
 
@@ -2878,7 +2880,7 @@ function Swipe (Glide, Components, Events) {
       var _this3 = this;
 
       Binder.on(END_EVENTS, Components.Html.wrapper, function (event) {
-        return _this3.end(event);
+        _this3.end(event);
       });
     },
 
