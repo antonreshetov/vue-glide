@@ -268,7 +268,10 @@ export default {
      * @returns {number} - index of slide
      */
     addEventListenerToSlide () {
-      const slides = document.querySelectorAll('.glide__slide')
+      let slides = document.querySelectorAll('.glide__slide')
+
+      // convert array-like -> array
+      slides = [].slice.call(slides)
 
       slides.forEach(el => {
         el.addEventListener('click', e => {
