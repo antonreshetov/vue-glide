@@ -117,7 +117,7 @@ export default {
     },
     active: {
       type: Number,
-      default: 0
+      default: null
     }
   },
 
@@ -309,6 +309,7 @@ export default {
      * Change slide by v-model
      */
     changeSlideByModel () {
+      if (this.active === null) return
       if (this.active > this.slidesCount - 1) {
         return this.go(`=${this.slidesCount - 1}`)
       }
