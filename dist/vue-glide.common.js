@@ -3899,7 +3899,7 @@ var glide_core_min = __webpack_require__("TSG6");
     },
     active: {
       type: Number,
-      default: 0
+      default: null
     }
   },
   data: function data() {
@@ -4099,6 +4099,8 @@ var glide_core_min = __webpack_require__("TSG6");
      * Change slide by v-model
      */
     changeSlideByModel: function changeSlideByModel() {
+      if (this.active === null) return;
+
       if (this.active > this.slidesCount - 1) {
         return this.go("=".concat(this.slidesCount - 1));
       }
