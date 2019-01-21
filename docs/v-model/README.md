@@ -1,6 +1,6 @@
 # V-model
 
-Vue Glide support `v-model`
+Vue Glide support `v-model`. The current active slide index.
 
 
 ```vue

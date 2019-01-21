@@ -18,7 +18,7 @@
     </div>
     <Content custom/>
     <div style="text-align: center; margin-top: 30px;">
-      <router-link class="action-button" to="/getting-started/">Get started</router-link>
+      <router-link class="action-button" to="/install/">Get started</router-link>
     </div>
     <div class="footer" v-if="data.footer">
       {{ data.footer }}
