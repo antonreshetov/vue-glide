@@ -1,6 +1,6 @@
 {
   "name": "vue-glide-js",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Vue component on top of the Glide.js",
   "private": false,
   "main": "dist/vue-glide.common.js",
