@@ -1,6 +1,7 @@
 <template>
   <li
     class="glide__slide"
+    @click="root.$emit('glide:slide-click')"
     :data-glide-index="index">
     <slot></slot>
   </li>
@@ -9,6 +10,8 @@
 <script>
 export default {
   name: 'VueGlideSlide',
+
+  inject: ['root'],
 
   computed: {
     /**

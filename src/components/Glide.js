@@ -121,6 +121,12 @@ export default {
     }
   },
 
+  provide () {
+    return {
+      root: this
+    }
+  },
+
   data () {
     return {
       glide: undefined
@@ -227,7 +233,6 @@ export default {
       this.glide = new Glide(this.$el, mergedOptions)
       this.glide.mount()
       this.eventConnector(events)
-      this.addEventListenerToSlide()
       this.bindModel()
       this.changeSlideByModel()
     },
@@ -259,41 +264,6 @@ export default {
         this.glide.on(event, e => {
           const emitter = event.replace(/\./, '-')
           this.$emit(`glide:${emitter}`, e)
-        })
-      })
-    },
-    /**
-     * Add event listener to not of Vue component to emit Vue event
-     * When type is 'carousel', glide.js clones DOM slides
-     * @returns {number} - index of slide
-     */
-    addEventListenerToSlide () {
-      let slides = document.querySelectorAll('.glide__slide')
-
-      // convert array-like -> array
-      slides = [].slice.call(slides)
-
-      slides.forEach(el => {
-        el.addEventListener('click', e => {
-          // Recursive bubbling from nested elems to find '.glide__slide'
-          const recursive = el => {
-            const parent = el.parentNode
-            const contain = parent.classList.contains('glide__slide')
-            if (contain) {
-              return this.$emit(
-                'glide:slide-click',
-                Number(parent.dataset.glideIndex)
-              )
-            } else {
-              recursive(parent)
-            }
-          }
-
-          if (!e.target.classList.contains('glide__slide')) {
-            recursive(e.target)
-          }
-
-          this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
         })
       })
     },
