@@ -11,8 +11,6 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   npm run build:lib
-  git add -A
-  git commit -m "Dist: Build $VERSION"
   npm version $VERSION -m "Release $VERSION"
   git push origin master
   npm publish
