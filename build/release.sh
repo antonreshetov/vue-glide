@@ -1,6 +1,8 @@
 #!/bin/sh
 
 set -e
+CURRENT=$(node -p "require('./package.json').version")
+echo "Current $CURRENT"
 echo "Enter release version: "
 read VERSION
 
