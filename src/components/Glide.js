@@ -231,8 +231,8 @@ export default {
       }
 
       this.glide = new Glide(this.$el, mergedOptions)
-      this.glide.mount()
       this.eventConnector(events)
+      this.glide.mount()
       this.bindModel()
       this.changeSlideByModel()
     },
