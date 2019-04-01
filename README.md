@@ -4,6 +4,7 @@
   <img src="https://img.shields.io/npm/v/vue-glide-js.svg">
   <img src="https://img.shields.io/github/issues/antonreshetov/vue-glide.svg">
   <img src="https://img.shields.io/npm/dw/vue-glide-js.svg">
+  <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/vue-glide-js.svg">
   <img src="https://travis-ci.com/antonreshetov/vue-glide.svg?branch=master">
   <img src="https://img.shields.io/github/license/antonreshetov/vue-glide.svg">
 </p>
