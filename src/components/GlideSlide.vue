@@ -1,7 +1,7 @@
 <template>
   <li
     class="glide__slide"
-    @click="root.$emit('glide:slide-click')"
+    @click="root.$emit('glide:slide-click', index)"
     :data-glide-index="index">
     <slot></slot>
   </li>
