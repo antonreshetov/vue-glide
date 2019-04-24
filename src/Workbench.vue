@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Workbench</h1>
-    <vue-glide class="demo" :bullet="true">
+    <vue-glide class="demo" :bullet="true" @glide:slide-click="select">
       <vue-glide-slide
         v-for="i in 10"
         :key="i">
@@ -23,6 +23,12 @@ export default {
   components: {
     [VueGlide.name]: VueGlide,
     [VueGlideSlide.name]: VueGlideSlide
+  },
+
+  methods: {
+    select (i) {
+      console.info('slide clicked:', i)
+    }
   }
 }
 </script>
