@@ -27,7 +27,8 @@ export default {
 
   methods: {
     select (i) {
-      console.info('slide clicked:', i);
+      // eslint-disable-next-line no-console
+      console.info("slide clicked:", i);
     }
   }
 }
