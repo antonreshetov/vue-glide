@@ -27,7 +27,7 @@ export default {
 
   methods: {
     select (i) {
-      console.info('slide clicked:', i)
+      console.info('slide clicked:', i);
     }
   }
 }
