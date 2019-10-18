@@ -2,7 +2,7 @@ languange: node_js
 node_js:
   - stable
 script:
-  - npm install -g vuepress
+  - npm install -g vuepress@>=0.14.11
   - npm install
   - npm run docs:build
 deploy:
