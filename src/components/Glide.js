@@ -327,5 +327,8 @@ export default {
         })
       })
     }
+  },
+  beforeDestroy() {
+    if (this.glide) this.glide.destroy()
   }
 }
