@@ -130,9 +130,9 @@ export default {
   render (h) {
     let control
     let bullet
-    let buttons = []
+    const buttons = []
     // Pass only vue-glide-slide
-    let slides = this.$slots.default.filter(
+    const slides = this.$slots.default.filter(
       c => {
         let isVueGlideTag = false
 
@@ -199,6 +199,17 @@ export default {
   },
 
   mounted () {
+    // Update on prop change
+    const props = Object.assign({}, this.$props)
+    Object.keys(props).forEach((prop) => {
+      this.$watch(prop, (newValue) => {
+        // create update object
+        const obj = {}
+        obj[prop] = newValue
+        this.glide.update(obj)
+      })
+    })
+
     this.init()
   },
 
