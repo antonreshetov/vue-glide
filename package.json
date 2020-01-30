@@ -4,6 +4,8 @@
   "description": "Vue component on top of the Glide.js",
   "private": false,
   "main": "dist/vue-glide.common.js",
+  "umd:main": "dist/foo.umd.js",
+  "source": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
