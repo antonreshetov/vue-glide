@@ -147,7 +147,7 @@ export default {
     )
 
     if (this.$slots.control && this.$slots.control.length) {
-      control = <div data-glide-el="controls">{this.$slots.control}</div>
+      control = <div class="glide__control" data-glide-el="controls">{this.$slots.control}</div>
     }
 
     if (this.bullet) {
