@@ -2,6 +2,10 @@ import Glide from '@glidejs/glide'
 import '@glidejs/glide/dist/css/glide.core.min.css'
 import events from './events'
 
+const isVueGlideSlideTag = tag => {
+  return tag === 'VueGlideSlide' || tag === 'vue-glide-slide'
+}
+
 export default {
   name: 'VueGlide',
 
@@ -133,17 +137,7 @@ export default {
     let buttons = []
     // Pass only vue-glide-slide
     let slides = this.$slots.default.filter(
-      c => {
-        let isVueGlideTag = false
-
-        if (c.componentOptions) {
-          isVueGlideTag =
-            c.componentOptions.tag === 'VueGlideSlide' ||
-            c.componentOptions.tag === 'vue-glide-slide'
-        }
-
-        return isVueGlideTag
-      }
+      c => c.componentOptions && isVueGlideSlideTag(c.componentOptions.tag)
     )
 
     if (this.$slots.control && this.$slots.control.length) {
@@ -193,7 +187,7 @@ export default {
     },
     slidesCount () {
       return this.$slots.default.filter(
-        c => c.componentOptions && c.componentOptions.tag === 'vue-glide-slide'
+        c => c.componentOptions && isVueGlideSlideTag(c.componentOptions.tag)
       ).length
     }
   },
