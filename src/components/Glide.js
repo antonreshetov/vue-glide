@@ -137,7 +137,7 @@ export default {
     let buttons = []
     // Pass only vue-glide-slide
     let slides = this.$slots.default.filter(
-      c => c =>  c.componentOptions && isVueGlideSlideTag(c.componentOptions.tag)
+      c =>  c.componentOptions && isVueGlideSlideTag(c.componentOptions.tag)
     )
 
     if (this.$slots.control && this.$slots.control.length) {
