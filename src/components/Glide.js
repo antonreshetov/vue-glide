@@ -316,8 +316,10 @@ export default {
           if (!e.target.classList.contains('glide__slide')) {
             recursive(e.target)
           }
+          else{
+            this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
+          }
 
-          this.$emit('glide:slide-click', Number(e.target.dataset.glideIndex))
         })
       })
     }
