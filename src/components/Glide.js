@@ -144,24 +144,28 @@ export default {
       control = <div data-glide-el="controls">{this.$slots.control}</div>
     }
 
-    if (this.bullet) {
-      for (let i = 0; i < this.slidesCount; i++) {
-        buttons.push(
-          h('button', {
-            key: i,
-            attrs: {
-              'data-glide-dir': '=' + i,
-              class: 'glide__bullet'
-            }
-          })
+    if (this.$slots.bullet && this.$slots.bullet.length) {
+      bullet = <div class="glide__bullets" data-glide-el="controls[nav]">{this.$slots.bullet}</div>
+    } else {
+      if (this.bullet) {
+        for (let i = 0; i < this.slidesCount; i++) {
+          buttons.push(
+            h('button', {
+              key: i,
+              attrs: {
+                'data-glide-dir': '=' + i,
+                class: 'glide__bullet'
+              }
+            })
+          )
+        }
+  
+        bullet = (
+          <div class="glide__bullets" data-glide-el="controls[nav]">
+            {buttons}
+          </div>
         )
       }
-
-      bullet = (
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-          {buttons}
-        </div>
-      )
     }
 
     return (
